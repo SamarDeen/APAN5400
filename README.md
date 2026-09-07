@@ -68,12 +68,15 @@ Replace `YOUR_GITHUB_USERNAME` with your GitHub username. If GitHub asks for a p
 ```git status```
 
 2. Add the files you want to commit
-```git add README.md``
+
+```git add ../README.md``
 
 3. Commit with message
+
 ```git commit -m "Add Git instructions for students to the README"```
 
 4. Upload to GitHub
+
 ```git push```
 
 5. For later work, repeat the same four steps. Stage only the files you mean to keep (for example git add Module1/test_mod.py). data/ and venv/ stay out because they are in .gitignore.
