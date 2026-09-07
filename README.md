@@ -69,7 +69,7 @@ Replace `YOUR_GITHUB_USERNAME` with your GitHub username. If GitHub asks for a p
 
 2. Add the files you want to commit
 
-```git add ../README.md``
+```git add ../README.md```
 
 3. Commit with message
 
