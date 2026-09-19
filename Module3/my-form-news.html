@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>News Search</title>
+</head>
+<body>
+    <h1>News Search</h1>
+
+    <form method="post">
+        <label for="userinput">Search title</label>
+        <input id="userinput" name="userinput" type="text" required>
+        <button type="submit">Search</button>
+    </form>
+
+    {% if results is not none %}
+        <h2>Results</h2>
+        {% if results %}
+            <ul>
+                {% for item in results %}
+                    <li>
+                        <strong>{{ item.title }}</strong><br>
+                        <em>{{ item.site }} &middot; {{ item.published }}</em>
+                        <p>{{ item.text }}</p>
+                        <a href="{{ item.url }}">{{ item.url }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No matches found.</p>
+        {% endif %}
+    {% endif %}
+</body>
+</html>

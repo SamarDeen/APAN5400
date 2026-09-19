@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Movie Search</title>
+</head>
+<body>
+    <h1>Movie Search</h1>
+
+    <form method="post">
+        <label for="term">Search title</label>
+        <input id="term" name="term" type="text" required>
+        <button type="submit">Search</button>
+    </form>
+
+    {% if results is not none %}
+        <h2>Results</h2>
+        {% if results %}
+            <ul>
+                {% for title in results %}
+                    <li>{{ title }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No matches found.</p>
+        {% endif %}
+    {% endif %}
+
+    {% if message %}
+        <p>{{ message }}</p>
+    {% endif %}
+</body>
+</html>
