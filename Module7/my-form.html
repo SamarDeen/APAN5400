@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>NYC Pedestrian Collisions by Borough</title>
+</head>
+<body>
+    <h1>Top Streets for Pedestrian Collisions</h1>
+    <p>Select a borough to see the streets with the highest number of pedestrian collisions.</p>
+
+    <form method="post">
+        <label for="borough">Borough</label>
+        <select id="borough" name="borough" required>
+            <option value="" disabled {% if not selected_borough %}selected{% endif %}>
+                Choose a borough
+            </option>
+            {% if boroughs %}
+                {% for borough in boroughs %}
+                    <option value="{{ borough }}" {% if borough == selected_borough %}selected{% endif %}>
+                        {{ borough }}
+                    </option>
+                {% endfor %}
+            {% else %}
+                {% for borough in ["BRONX", "BROOKLYN", "MANHATTAN", "QUEENS", "STATEN ISLAND"] %}
+                    <option value="{{ borough }}" {% if borough == selected_borough %}selected{% endif %}>
+                        {{ borough.title() }}
+                    </option>
+                {% endfor %}
+            {% endif %}
+        </select>
+        <button type="submit">Show streets</button>
+    </form>
+
+    {% if results is not none %}
+        <h2>
+            {% if selected_borough %}
+                Top streets in {{ selected_borough }}
+            {% else %}
+                Top streets
+            {% endif %}
+        </h2>
+        {% if results %}
+            <ol>
+                {% for row in results %}
+                    <li>
+                        {{ row.street_name }}
+                        — {{ row.total_pedestrians }} pedestrian collisions
+                    </li>
+                {% endfor %}
+            </ol>
+        {% else %}
+            <p>No pedestrian collisions found for this borough.</p>
+        {% endif %}
+    {% endif %}
+
+    {% if message %}
+        <p>{{ message }}</p>
+    {% endif %}
+</body>
+</html>
